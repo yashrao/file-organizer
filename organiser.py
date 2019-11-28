@@ -11,11 +11,16 @@ def organize():
         if os.path.isdir(MAIN_FOLDER + '/' + filename):
             continue # skip directories
         file_extension = filename.split('.')[-1]
-        filenameNoExt = ''.join(filename.split('.')[:-1])
-        if file_extension is '.part': # checking if file is a .part file which is a download
+        path = MAIN_FOLDER + file_extension
+        filename_no_ext = ''.join(filename.split('.')[:-1])
+        if file_extension is 'part': # checking if file is a .part file which is a download
             continue
-        if filenameNoExt + '.part' in files: #checking if currently being downloaded
+        if filename_no_ext + 'part' in files: #checking if currently being downloaded
             continue
+        if not os.path.exists(path):
+            os.mkdir(path)
+
+        print(file_extension + filename_no_ext)
 
         
 
